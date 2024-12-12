@@ -140,12 +140,13 @@ Gemini-OpenAI-Proxy offers a straightforward way to integrate OpenAI functionali
 
    Model Mapping:
 
-   | GPT Model | Gemini Model |
-   |---|---|
-   | gpt-3.5-turbo | gemini-1.0-pro-latest |
-   | gpt-4 | gemini-1.5-flash-latest |
-   | gpt-4-turbo-preview | gemini-1.5-pro-latest |
-   | gpt-4-vision-preview | gemini-1.0-pro-vision-latest |
+   | GPT Model              | Gemini Model |
+   |------------------------|---|
+   | gpt-3.5-turbo          | gemini-1.0-pro-latest |
+   | gpt-4                  | gemini-1.5-flash-latest |
+   | gpt-4o                 | gemini-2.0-flash-exp |
+   | gpt-4-turbo-preview    | gemini-1.5-pro-latest |
+   | gpt-4-vision-preview   | gemini-1.0-pro-vision-latest |
    | text-embedding-ada-002 | text-embedding-004 |
 
    If you want to disable model mapping, configure the environment variable `DISABLE_MODEL_MAPPING=1`. This will allow you to refer to the Gemini models directly.

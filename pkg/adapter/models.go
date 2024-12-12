@@ -12,6 +12,7 @@ const (
 	Gemini1Dot5Pro   = "gemini-1.5-pro-latest"
 	Gemini1Dot5Flash = "gemini-1.5-flash-latest"
 	Gemini1Dot5ProV  = "gemini-1.0-pro-vision-latest" // Converted to one of the above models in struct::ToGenaiModel
+	Gemini2FlashExp  = "gemini-2.0-flash-exp"
 	TextEmbedding004 = "text-embedding-004"
 )
 
@@ -53,6 +54,8 @@ func GetMappedModel(geminiModelName string) string {
 
 func ConvertModel(openAiModelName string) string {
 	switch {
+	case openAiModelName == openai.GPT4o:
+		return Gemini2FlashExp
 	case openAiModelName == openai.GPT4VisionPreview:
 		return Gemini1Dot5ProV
 	case openAiModelName == openai.GPT4TurboPreview || openAiModelName == openai.GPT4Turbo1106 || openAiModelName == openai.GPT4Turbo0125:

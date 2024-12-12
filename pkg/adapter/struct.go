@@ -23,6 +23,7 @@ type ChatCompletionRequest struct {
 	N           int32                   `json:"n" binding:"omitempty"`
 	Stream      bool                    `json:"stream" binding:"omitempty"`
 	Stop        []string                `json:"stop,omitempty"`
+	Tools       []map[string]any        `json:"tools,omitempty"`
 }
 
 func (req *ChatCompletionRequest) ToGenaiMessages() ([]*genai.Content, error) {

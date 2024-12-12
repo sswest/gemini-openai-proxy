@@ -8,10 +8,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/generative-ai-go/genai"
-	openai "github.com/sashabaranov/go-openai"
-	"google.golang.org/api/option"
-	"google.golang.org/api/googleapi"
 	"github.com/pkg/errors"
+	openai "github.com/sashabaranov/go-openai"
+	"google.golang.org/api/googleapi"
+	"google.golang.org/api/option"
 
 	"github.com/zhu327/gemini-openai-proxy/pkg/adapter"
 )
@@ -48,6 +48,12 @@ func ModelListHandler(c *gin.Context) {
 			openai.Model{
 				CreatedAt: 1686935002,
 				ID:        adapter.GetModel(openai.GPT4VisionPreview),
+				Object:    "model",
+				OwnedBy:   owner,
+			},
+			openai.Model{
+				CreatedAt: 1686935002,
+				ID:        adapter.GetModel(openai.GPT4o),
 				Object:    "model",
 				OwnedBy:   owner,
 			},
@@ -116,6 +122,13 @@ func ChatProxyHandler(c *gin.Context) {
 	defer client.Close()
 
 	model := req.ToGenaiModel()
+	if model == adapter.Gemini2FlashExp {
+		tools := []map[string]any{
+			{"code_execution": map[string]any{}},
+			{"googleSearch": map[string]any{}},
+		}
+		req.Tools = tools
+	}
 	gemini := adapter.NewGeminiAdapter(client, model)
 
 	if !req.Stream {
