@@ -124,7 +124,6 @@ func ChatProxyHandler(c *gin.Context) {
 	model := req.ToGenaiModel()
 	if model == adapter.Gemini2FlashExp {
 		tools := []map[string]any{
-			{"code_execution": map[string]any{}},
 			{"googleSearch": map[string]any{}},
 		}
 		req.Tools = tools
